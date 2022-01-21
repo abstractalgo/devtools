@@ -12,17 +12,20 @@ import LayoutApp from "devtools/client/inspector/layout/components/LayoutApp";
 import { InspectorActiveTab } from "../state";
 
 import "ui/setup/dynamic/inspector";
+import { EventListenersApp } from "../event-listeners/EventListenersApp";
 
 const INSPECTOR_TAB_TITLES: Record<InspectorActiveTab, string> = {
   ruleview: "Rules",
   computedview: "Computed",
   layoutview: "Layout",
+  eventsview: "Event Listeners",
 } as const;
 
 const availableTabs: readonly InspectorActiveTab[] = [
   "ruleview",
   "computedview",
   "layoutview",
+  "eventsview",
 ] as const;
 
 const InspectorApp: FC = () => {
@@ -67,6 +70,9 @@ const InspectorApp: FC = () => {
           showBoxModelProperties: true,
         };
         return <LayoutApp {...layoutProps} />;
+      }
+      case "eventsview": {
+        return <EventListenersApp />;
       }
       default:
         return null;
